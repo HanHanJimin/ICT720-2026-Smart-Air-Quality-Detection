@@ -15,8 +15,7 @@ Repo for demo idea, model, and code for ICT720 course of 2026
 
 ---
 
-## List of student projects
-
+## List of Group Members
 ### Group [GroupName]
 
 #### Members
