@@ -28,7 +28,15 @@ Repo for demo idea, model, and code for ICT720 course of 2026
 
 #### Scope
 
-An IoT-based smart air quality monitoring system that uses an ESP32-S2 with a Honeywell PM2.5 sensor to continuously monitor air quality. When PM2.5 levels exceed a safe threshold, the system triggers an ESP32-S3 camera to capture the environment, analyzes the image using an LLM Vision API to identify the pollution source, and alerts users via Telegram with the photo, PM2.5 reading, and identified cause. A web dashboard provides historical data and trends.
+An IoT-based smart air quality monitoring system that:
+
+- Uses an ESP32-S2 with a Honeywell PM2.5 sensor to continuously monitor air quality in real-time
+- Detects when PM2.5 levels exceed a safe threshold (50 µg/m³)
+- Triggers an ESP32-S3 camera to capture a photo of the surroundings when air is bad
+- Sends the photo to a Google Gemini Vision API to identify the pollution source
+- Alerts users via Telegram with the photo, PM2.5 reading, and identified cause
+- Stores all readings and alerts in MongoDB for historical analysis
+- Displays real-time data and trends on a Streamlit web dashboard
 
 ---
 
