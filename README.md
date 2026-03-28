@@ -20,11 +20,13 @@ Repo for demo idea, model, and code for ICT720 course of 2026
 
 #### Members
 
-- **Member 1 Name**: Hardware & Sensor Engineer — Set up and program the ESP32-S2 to read PM2.5 data from the Honeywell sensor via UART, connect to WiFi, and publish air quality readings to the MQTT broker every 5 seconds.
-- **Member 2 Name**: Camera & Embedded Engineer — Program the LilyGO T-SimCam ESP32-S3 to subscribe to MQTT alerts, capture a photo when air quality is poor, and send the image to the Python server via HTTP POST.
-- **Member 3 Name**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers camera alerts, and exposes REST API endpoints for other services.
-- **Member 4 Name**: AI / LLM Integration Engineer — Design prompts and integrate the Google Gemini Vision API to analyze camera photos, classify pollution sources (smoke, traffic, construction, cooking), and parse output into structured JSON data.
-- **Member 5 Name**: Frontend / Bot Developer — Build the Telegram Bot to send air quality alerts with photos and classifications, and develop the Streamlit web dashboard for real-time monitoring and historical data visualization.
+- **Jesdakorn**: Hardware & Sensor Engineer — Set up and program the ESP32-S2 to read PM2.5 data from the Honeywell sensor via UART, connect to WiFi, and publish air quality readings to the MQTT broker every 5 seconds.
+- **Nhat Anh Tran**: Voice AI Engineer — Program the LilyGO T-SimCam ESP32-S3 to subscribe to MQTT alerts.
+- **Thinn Htet Htet**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers the LilyGO T-SimCam ESP32-S3 alerts, and exposes REST API endpoints for other services.
+- **Khin Su Su Han**: Frontend / Bot Developer — Build the Telegram Bot to send air quality alerts.
+- **Napat Charoenwong**: Frontend Developer — Build the Streamlit web dashboard for real-time monitoring and historical data visualization.
+
+**Our Goal:** Help residents monitor and understand air quality through a natural voice interface, providing real-time spoken health advice powered by AI.
 
 #### Scope
 
@@ -49,9 +51,9 @@ An IoT-based smart air quality monitoring system that:
 | resident | receive a Telegram alert when PM2.5 exceeds safe levels | I can close windows or wear a mask to protect my health |
 | resident | see a photo of what is causing the pollution | I know whether it's smoke, traffic, or construction and can respond |
 | resident | set my own PM2.5 alert threshold | I can customize sensitivity based on my health condition |
-| building manager | view real-time PM2.5 levels on a web dashboard | I can monitor air quality across the building continuously |
-| building manager | view historical PM2.5 data with charts | I can identify patterns and report to management |
-| researcher | query collected PM2.5 and image data via REST API | data can be retrieved and used for analysis |
+| building manager | view real-time PM2.5 levels on a web dashboard | I can Announce that residents should wear masks or provide health care advice to residents. |
+| building manager | view historical PM2.5 data with charts |  I can prepare the monthly air quality report for the juristic committee and find solutions. |
+| researcher | query collected PM2.5 and image data via REST API | I can run statistical analysis and build predictive models for pollution forecasting. |
 | researcher | review AI classification accuracy on the dashboard | the AI model can be improved over time |
 
 ---
@@ -79,24 +81,40 @@ An IoT-based smart air quality monitoring system that:
 ### Phase 1: PM2.5 Data Collection (continuous, every 5 seconds)
 
 ```
-ESP32-S2 reads PM2.5 via UART → publishes to MQTT broker → 
-Server subscribes and receives → parses JSON → stores in MongoDB → checks threshold
+Server publishes "air_bad" alert via MQTT
+→ MQTT forwards to ESP32-S3
+→ ESP32-S3 displays current PM2.5 value on screen
+→ ESP32-S3 triggers buzzer / LED warning
+→ Server sends alert message to Telegram bot
 ```
 
-### Phase 2: Camera Trigger + AI Classification (when PM2.5 > 50 µg/m³)
+### Phase 2: Threshold Alert + Local Display (when PM2.5 > 50 µg/m³)
 
 ```
-Server publishes "air_bad" alert via MQTT → MQTT forwards to ESP32-S3 →
-ESP32-S3 captures photo → HTTP POST to server → 
-Server sends photo to Gemini Vision API → AI returns classification →
-Server stores result in MongoDB → sends alert to Telegram bot
+Server publishes "air_bad" alert via MQTT
+→ MQTT forwards to ESP32-S3
+→ ESP32-S3 displays current PM2.5 value on screen
+→ ESP32-S3 triggers buzzer / LED warning
+→ Server sends alert message to Telegram bot
+```
+### Phase 3: Multilingual Voice Query (on-demand by user)
+
+```
+User speaks question in any language to ESP32-S3
+→ ESP32-S3 captures audio → sends to server via HTTP POST
+→ Server calls LLM API (e.g. Gemini) with PM2.5 context + user question
+→ LLM generates response in user's language
+→ Server returns text response to ESP32-S3
+→ ESP32-S3 displays answer on screen (and/or speaks via speaker)
 ```
 
-### Phase 3: Dashboard Updates (continuous polling)
+### Phase 4: Dashboard Updates
 
 ```
-Streamlit dashboard → queries REST API → receives PM2.5 history + photos + classifications → 
-updates charts and displays
+Streamlit dashboard
+→ queries REST API
+→ receives PM2.5 history + alert logs
+→ updates charts and displays
 ```
 
 ---
@@ -106,7 +124,7 @@ updates charts and displays
 | Device | Model | Purpose |
 |--------|-------|---------|
 | Microcontroller 1 | ESP32-S2 "Cucumber" | Reads PM2.5 sensor data, publishes via MQTT |
-| Microcontroller 2 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Camera capture, triggered by MQTT alert |
+| Microcontroller 2 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Receives MQTT alert, displays PM2.5 on built-in LCD, accepts voice input, responds via speaker, triggers buzzer/LED |
 | Sensor | Honeywell HPM PM2.5 (P/N: 32326466-001) | Measures PM2.5 and PM10 air particles |
 | Breadboard | Standard full-size solderless | Prototyping connections |
 
