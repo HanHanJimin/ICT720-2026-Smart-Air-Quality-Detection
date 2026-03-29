@@ -1,74 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sensor Data Graph</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+}
+
+.status {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.temp { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
+.humidity { background: linear-gradient(135deg, #4dabf7, #228be6); }
+.pm25 { background: linear-gradient(135deg, #ffd43b, #fab005); color: black; }
+.pm10 { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+
+.card h2 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.card p {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+/* CHART */
+.chart-box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.room-cards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.room-cards button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* สีให้ consistent กับ card */
+.btn-all { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.btn-room1 { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
+.btn-room2 { background: linear-gradient(135deg, #4dabf7, #228be6); }
+
+/* hover = เข้มขึ้น */
+.room-cards button:hover {
+    filter: brightness(0.8);
+    transform: scale(1.05);
+}
+
+/* active = เด่นสุด */
+.room-cards button.active {
+    outline: 3px solid white;
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+</style>
 </head>
+
 <body>
 
-    <h2>Environment Monitor</h2>
-    
-    <div style="width: 800px; max-width: 100%;">
-        <canvas id="myTimeGraph"></canvas>
-    </div>
+<div class="header">
+    <h1>🌍 Environment Dashboard</h1>
+    <div class="status" id="lastUpdate">Loading...</div>
+</div>
 
-    <script>
-        // Your raw JSON data
-        const rawData = {
-          "-OoqvCBsMfl84txZ6wDi": {"humidity":67.37,"pm10":41,"pm2_5":39,"temp":39.03,"time":"2026-03-29T07:09:42"},
-          "-OoqveYUgD6VIefpHxE_": {"humidity":60.73,"pm10":38,"pm2_5":40,"temp":35.07,"time":"2026-03-29T07:11:43"}
-        };
+<div class="room-cards">
+    <button class="btn-all active" onclick="setMode('all', this)">🌐 All</button>
+    <button class="btn-room1" onclick="setMode('room1', this)">🏠 Room 1</button>
+    <button class="btn-room2" onclick="setMode('room2', this)">🏠 Room 2</button>
+</div>
 
-        // Convert the object into an array
-        const dataArray = Object.values(rawData);
+<h2 style="margin-bottom:10px; color:#dce2eb;">
+    📌 The Latest Records
+</h2>
 
-        // Extract data for the X and Y axes
-        const timeLabels = dataArray.map(item => {
-            const date = new Date(item.time);
-            return date.toLocaleTimeString(); // Formats it to standard time
-        });
-        
-        const temperatures = dataArray.map(item => item.temp);
-        const humidities = dataArray.map(item => item.humidity);
+<div class="cards">
+    <div class="card temp"><h2>🌡 Temperature</h2><p id="temp">--</p></div>
+    <div class="card humidity"><h2>💧 Humidity</h2><p id="humidity">--</p></div>
+    <div class="card pm25"><h2>🌫 PM2.5</h2><p id="pm25">--</p></div>
+    <div class="card pm10"><h2>🌪 PM10</h2><p id="pm10">--</p></div>
+</div>
 
-        // Target the canvas element
-        const ctx = document.getElementById('myTimeGraph').getContext('2d');
+<div class="chart-box">
+    <canvas id="chartMain"></canvas>
+</div>
 
-        // Draw the Chart
-        new Chart(ctx, {
-            type: 'line', // We want a line graph for time series
-            data: {
-                labels: timeLabels, // The X-axis labels
-                datasets: [
-                    {
-                        label: 'Temperature',
-                        data: temperatures, // The Y-axis data for temp
-                        borderColor: 'rgb(255, 99, 132)', // Red line
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        tension: 0.1 // Slight curve to the line
-                    },
-                    {
-                        label: 'Humidity',
-                        data: humidities, // The Y-axis data for humidity
-                        borderColor: 'rgb(54, 162, 235)', // Blue line
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        tension: 0.1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: false // Automatically scales based on your numbers
+<div class="chart-box">
+    <canvas id="chartPM"></canvas>
+</div>
+
+<div class="footer">
+    Real-time Sensor Dashboard • Updated every 20 seconds
+</div>
+
+<script>
+const url1 = "https://besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app/room1/logs.json";
+const url2 = "https://besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app/room2/logs.json";
+
+let chartMain, chartPM;
+let currentMode = "all";
+
+// เปลี่ยนโหมด
+function setMode(mode, btn) {
+    currentMode = mode;
+
+    // ลบ active ทุกปุ่ม
+    document.querySelectorAll('.room-cards button')
+        .forEach(b => b.classList.remove('active'));
+
+    // ใส่ active ให้ปุ่มที่กด
+    btn.classList.add('active');
+
+    loadData();
+}
+
+// โหลดข้อมูล 2 ห้อง
+function loadData() {
+    Promise.all([
+        fetch(url1).then(res => res.json()),
+        fetch(url2).then(res => res.json())
+    ])
+    .then(([data1, data2]) => {
+
+        let arr1 = Object.values(data1 || {});
+        let arr2 = Object.values(data2 || {});
+
+        // ใส่ label ห้อง
+        arr1 = arr1.map(d => ({...d, room: "room1"}));
+        arr2 = arr2.map(d => ({...d, room: "room2"}));
+
+        let dataArray = [];
+
+        if (currentMode === "room1") dataArray = arr1;
+        else if (currentMode === "room2") dataArray = arr2;
+        else dataArray = [...arr1, ...arr2]; // รวม
+
+        // sort เวลา
+        dataArray.sort((a, b) => new Date(a.time) - new Date(b.time));
+
+        if (dataArray.length === 0) return;
+
+        const latest = dataArray[dataArray.length - 1];
+
+        // ===== UPDATE CARDS =====
+        document.getElementById("temp").innerText = latest.temp + " °C";
+        document.getElementById("humidity").innerText = latest.humidity + " %";
+        document.getElementById("pm25").innerText = latest.pm2_5;
+        document.getElementById("pm10").innerText = latest.pm10;
+
+        document.getElementById("lastUpdate").innerText =
+            `Mode: ${currentMode.toUpperCase()} | ` +
+            new Date(latest.time).toLocaleString();
+
+        // ===== PREP DATA =====
+        const labels = dataArray.map(d => new Date(d.time).toLocaleTimeString());
+        const temps = dataArray.map(d => d.temp);
+        const hums = dataArray.map(d => d.humidity);
+        const pm25 = dataArray.map(d => d.pm2_5);
+        const pm10 = dataArray.map(d => d.pm10);
+
+        // ===== MAIN CHART =====
+        if (!chartMain) {
+            chartMain = new Chart(document.getElementById('chartMain'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Temp', data: temps, borderColor: '#ff6b6b', tension: 0.3 },
+                        { label: 'Humidity', data: hums, borderColor: '#4dabf7', tension: 0.3 }
+                    ]
+                },
+                options: {
+                    animation: false,
+                    plugins: { legend: { labels: { color: "white" } } },
+                    scales: {
+                        x: { ticks: { color: "white" } },
+                        y: { ticks: { color: "white" } }
                     }
                 }
-            }
-        });
-    </script>
+            });
+        } else {
+            chartMain.data.labels = labels;
+            chartMain.data.datasets[0].data = temps;
+            chartMain.data.datasets[1].data = hums;
+            chartMain.update();
+        }
+
+        // ===== PM CHART =====
+        if (!chartPM) {
+            chartPM = new Chart(document.getElementById('chartPM'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'PM2.5', data: pm25, borderColor: '#ffd43b', tension: 0.3 },
+                        { label: 'PM10', data: pm10, borderColor: '#69db7c', tension: 0.3 }
+                    ]
+                },
+                options: {
+                    animation: false,
+                    plugins: { legend: { labels: { color: "white" } } },
+                    scales: {
+                        x: { ticks: { color: "white" } },
+                        y: { ticks: { color: "white" } }
+                    }
+                }
+            });
+        } else {
+            chartPM.data.labels = labels;
+            chartPM.data.datasets[0].data = pm25;
+            chartPM.data.datasets[1].data = pm10;
+            chartPM.update();
+        }
+
+    })
+    .catch(err => console.error(err));
+}
+
+// โหลดครั้งแรก
+loadData();
+setInterval(loadData, 20000);
+</script>
 
 </body>
 </html>
