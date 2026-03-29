@@ -61,20 +61,11 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 3. System Architecture
 
-- [AIoT stack](#software-stack)
+![Software Stack](images/software_stack.png)
 
 ---
 
 ## 4. Software Stack
-* **Languages:** C++ (Arduino/Firmware), Python (Backend/AI).
-* **Databases:** Firebase Realtime DB (Live), MongoDB (Historical).
-* **Backend:** FastAPI (Dockerized).
-* **AI:** Google Gemini Vision & Lyria.
-* **Frontend:** Streamlit & Telegram Bot API.
-
-![Software Stack](images/software_stack.png)
-
-### Stack details
 
 | # | Stack | Technology | Description |
 |---|-------|------------|-------------|
@@ -85,7 +76,6 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | 5 | Dashboard Stack (UI/Docker) | Python, Streamlit, Plotly | Web dashboard for monitoring and history |
 
 ---
-
 
 ## 5. Dataflow Diagram
 
@@ -221,11 +211,11 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 
 ## 10. Demo
 
-### 🚀 Quick Start for Evaluation:
-1.  **Live Stream:** Open the [Firebase Console](https://console.firebase.google.com/) to see the JSON tree updating in real-time as the ESP32-S2 sends packets.
-2.  **Threshold Test:** * Expose the sensor to a high-concentration source (or manually update the Firebase value to `> 50`).
-    * Observe the **Telegram Bot** instantly pushing a notification with the current PM2.5 value and a timestamp.
-3.  **Analytics:** Run the Streamlit dashboard to view the **39+ historical rows** currently stored in the logs, visualized as a trend line.
+### 🚀 Voice Bot
+
+### 🚀 Telegram Bot
+
+### 🚀 Dashboard
 
 ---
 
@@ -239,26 +229,11 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 
 ## 12. Role and Tasks
 
-Our team divided the project into **4 Functional Pillars** to ensure parallel development during the 48-hour sprint:
-
-### 🛠️ Part 1: Sensory & Edge (Member 1 & 2)
-* Hardware wiring and sensor calibration.
-* Firmware development for ESP32-S2/S3.
-* NTP time synchronization and WiFi stability management.
-
-### ☁️ Part 2: Cloud Infrastructure (Member 3)
-* Firebase Realtime Database schema design.
-* Backend API development using FastAPI.
-* Data validation and "Server-side" timestamping.
-
-### 🤖 Part 3: Intelligence Layer (Member 4)
-* Integration of Google Gemini Vision API.
-* Prompt engineering for "Health Advice" generation.
-* Voice-to-Text and Text-to-Voice processing logic.
-
-### 📊 Part 4: User Experience (Member 5)
-* Streamlit Dashboard UI/UX design.
-* Telegram Bot event-handling (polling/webhooks).
-* Historical data visualization and reporting.
-
+| Name | Role | Primary Tasks |
+| :--- | :--- | :--- |
+| **Jesdakorn Jaraschotesathien** | Hardware Engineer | Program ESP32-S2/ESP8266 to read PM2.5, PM10, humidity, and temperature; synchronize 4-parameter payloads to **Firebase Realtime Database**. |
+| **Nhat Anh Tran** | Voice AI Engineer | Program LilyGO T-SimCam ESP32-S3 to handle voice interactions, fetch historical data from **Firebase**, and display real-time alerts. |
+| **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, check PM2.5 thresholds, and expose REST API endpoints for AI services. |
+| **Khin Su Su Han** | Bot Developer | Develop the Telegram Bot to push real-time air quality alerts and AI-generated health advice to users. |
+| **Napat Charoenwong** | Frontend Developer | Build the Streamlit web dashboard to query **Firebase** for real-time monitoring and historical trend visualization. |
 
