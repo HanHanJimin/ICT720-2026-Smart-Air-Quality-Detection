@@ -18,12 +18,12 @@ import google.generativeai as genai
 # ═══════════════════════════════════════
 # SETTINGS
 # ═══════════════════════════════════════
-TELEGRAM_TOKEN = "8716823073:AAGrzcD2T2Koglig7lTkwLKzTRlDxMVZ_LY"
-GEMINI_API_KEY = "AIzaSyCSllVonuvaa6awEYZ7SPNxZbP7cLsi4lU"
+TELEGRAM_TOKEN = "---"
+GEMINI_API_KEY = "-----"
 
 FIREBASE_URL = "https://besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app"
 DEFAULT_THRESHOLD = 50
-ALERT_THRESHOLD = 20  # ✅ Lowered for testing
+ALERT_THRESHOLD = 20  #  Lowered for testing
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 genai.configure(api_key=GEMINI_API_KEY)
