@@ -3,7 +3,7 @@
 
 **Our Goal:** Help residents monitor and understand air quality through a natural voice interface, providing real-time spoken health advice powered by AI.
 
-## Team Roles
+## Team Members
 
 | Name | Role |
 |------|------|
@@ -233,7 +233,7 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 | :--- | :--- | :--- |
 | **Jesdakorn Jaraschotesathien** | Hardware Engineer | Program ESP32-S2/ESP8266 to read PM2.5, PM10, humidity, and temperature; synchronize 4-parameter payloads to **Firebase Realtime Database**. |
 | **Nhat Anh Tran** | Voice AI Engineer | Program LilyGO T-SimCam ESP32-S3 to handle voice interactions, fetch historical data from **Firebase**, and display real-time alerts. |
-| **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, check PM2.5 thresholds, and expose REST API endpoints for AI services. |
+| **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, and expose REST API endpoints for AI services. |
 | **Khin Su Su Han** | Bot Developer | Develop the Telegram Bot to push real-time air quality alerts and AI-generated health advice to users. |
 | **Napat Charoenwong** | Frontend Developer | Build the Streamlit web dashboard to query **Firebase** for real-time monitoring and historical trend visualization. |
 
