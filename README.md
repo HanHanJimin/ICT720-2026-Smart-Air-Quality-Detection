@@ -68,11 +68,11 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 | # | Stack | Technology | Description |
 |---|-------|------------|-------------|
-| 1 | IoT Sensor Stack (Embedded) | ESP32-S2, ESP32-S3, Honeywell PM2.5, Arduino, Paho MQTT | Reads air quality data and captures photos |
-| 2 | Data Collector Stack (Server/Docker) | Python, FastAPI, Paho MQTT, pymongo, MongoDB | Central server that receives, stores, and processes all data |
-| 3 | AI Stack (Cloud API) | Google Gemini Vision API, Prompt Engineering | Classifies pollution source from camera photos |
-| 4 | Chatbot Stack (Service/Docker) | Python, pyTelegramBotAPI | Sends alerts to users via Telegram |
-| 5 | Dashboard Stack (UI/Docker) | Python, Streamlit, Plotly | Web dashboard for monitoring and history |
+| 1 | IoT Sensor Stack (Embedded) | ESP32-S2, ESP8266, ESP32-S3| Reads PM2.5, PM10, Temp, Humidity and pushes to Firebase Realtime DB; ESP32-S3 handles firmware UI and button interrupts |
+| 2 | Cloud Database Stack | Firebase Realtime Database, Firebase REST API, Firebase Admin SDK, Docker | Central real-time data store for all sensor readings |
+| 3 | AI & Voice Stack | Google Gemini API (text), gTTS, Python, Prompt Engineering | Handle voice interactions, fetch historical data from Firebase, and display real-time alerts |
+| 4 | Chatbot Stack | Python, pyTelegramBotAPI, Firebase Admin SDK, Google Gemini API | Sends alerts to users via Telegram |
+| 5 | Dashboard Stack | HTML, JavaScript, Firebase JS SDK | Web dashboard for monitoring and history |
 
 ---
 
