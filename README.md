@@ -1,9 +1,46 @@
 # ICT720-2026-Smart-Air-Quality-Detection
 <p>This project designed to help people monitor PM2.5 levels more meaningfully in their own indoor environment. For people who do not own a PM2.5 filter or purifier, it is often difficult to access PM2.5 information directly in their room or workspace. Even for those who already have a PM2.5 filter, most devices only show the current value, without providing any history, trends, or deeper insight. In addition, official air-quality websites usually provide data based on general monitoring stations, so the PM2.5 values may not accurately reflect the actual conditions at your specific location.</p>
 
+**Our Goal:** Help residents monitor and understand air quality through a natural voice interface, providing real-time spoken health advice powered by AI.
 
+## Team Roles
 
-## User stories
+| Name | Role |
+|------|------|
+| Jesdakorn Jaraschotesathien | IoT Hardware Engineer |
+| Nhat Anh Tran | Voice AI Engineer |
+| Thinn Thinn Htet | Backend Developer |
+| Khin Su Su Han | Integration Developer |
+| Napat Charoenwong | Frontend Developer |
+
+---
+
+## 📑 Table of Contents
+1. [Scope and Objectives](#1-scope-and-objectives)
+2. [User Stories](#2-user-stories)
+3. [System Architecture](#3-system-architecture)
+4. [Software Stack](#4-software-stack)
+5. [Dataflow Diagram](#5-dataflow-diagram)
+6. [Tools and Technologies](#6-tools-and-technologies)
+7. [Project Structure](#7-project-structure)
+8. [Implementation](#8-implementation)
+9. [Required Keys](#9-required-keys)
+10. [Demo](#10-demo)
+11. [Future Work](#11-future-work)
+12. [Role and Tasks](#12-role-and-tasks)
+
+---
+## 1. Scope and Objectives
+An IoT-based smart air quality monitoring system that:
+* Continuously monitors PM2.5/PM10 levels using **ESP32-S2** "Cucumber" nodes.
+* Synchronizes data to a central **Firebase Realtime Database** for multi-device management.
+* Detects unhealthy spikes (> 50 µg/m³) and triggers **ESP32-S3** visual/voice alerts.
+* Uses **Google Gemini AI** to identify pollution sources from camera feeds.
+* Provides a dual-interface: **Telegram Bot** (Alerts) and **Streamlit Dashboard** (History).
+
+---
+
+## 2. User Stories
 <p>1. As a room owner, I want to monitor PM2.5 levels in my room remotely through a dashboard, so that I can check air quality even when I am not physically there</p>
 
 <p>2. As a room owner, I want to see historical PM2.5 data , so that I can evaluate whether the room environment is improving or getting worse over time.</p>
@@ -11,44 +48,6 @@
 <p>3. As a room owner, I want to set safe threshold values for PM2.5, so that the system can notify users when the air quality becomes unhealthy.</p>
 
 <p>4. As a room owner, I want to identify time periods when pollution is highest, so that I can improve ventilation or change room usage habits.</p>
-## Software models
-## Software stack
-
-- [AIoT stack](#software-stack)
-- [Sequence diagram](#sequence-diagram)
-
-## Software interaction
-
----
-
-## List of Group Members
-### Group [GroupName]
-
-#### Members
-
-- **Jesdakorn Jaraschotesathien**: Hardware Engineer — Program the ESP32-S2 and ESP8266 to read PM2.5, PM10, humidity and temperature. Then, send those parameters to online database
-- **Nhat Anh Tran**: Voice AI Engineer — Program the LilyGO T-SimCam ESP32-S3 to subscribe to MQTT alerts.
-- **Thinn Thinn Htet**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers the LilyGO T-SimCam ESP32-S3 alerts, and exposes REST API endpoints for other services.
-- **Khin Su Su Han**: Frontend / Bot Developer — Build the Telegram Bot to send air quality alerts.
-- **Napat Charoenwong**: Frontend Developer — Build the Streamlit web dashboard for real-time monitoring and historical data visualization.
-
-**Our Goal:** Help residents monitor and understand air quality through a natural voice interface, providing real-time spoken health advice powered by AI.
-
-#### Scope
-
-An IoT-based smart air quality monitoring system that:
-
-- Uses an ESP32-S2 with a Honeywell PM2.5 sensor to continuously monitor air quality in real-time
-- Detects when PM2.5 levels exceed a safe threshold (50 µg/m³)
-- Triggers an ESP32-S3 camera to capture a photo of the surroundings when air is bad
-- Sends the photo to a Google Gemini Vision API to identify the pollution source
-- Alerts users via Telegram with the photo, PM2.5 reading, and identified cause
-- Stores all readings and alerts in MongoDB for historical analysis
-- Displays real-time data and trends on a Streamlit web dashboard
-
----
-
-## User stories
 
 ![User Stories](images/user_stories.png)
 
@@ -64,7 +63,18 @@ An IoT-based smart air quality monitoring system that:
 
 ---
 
-## Software stack
+## 3. System Architecture
+
+- [AIoT stack](#software-stack)
+
+---
+
+## 4. Software Stack
+* **Languages:** C++ (Arduino/Firmware), Python (Backend/AI).
+* **Databases:** Firebase Realtime DB (Live), MongoDB (Historical).
+* **Backend:** FastAPI (Dockerized).
+* **AI:** Google Gemini Vision & Lyria.
+* **Frontend:** Streamlit & Telegram Bot API.
 
 ![Software Stack](images/software_stack.png)
 
@@ -80,9 +90,12 @@ An IoT-based smart air quality monitoring system that:
 
 ---
 
-## Sequence diagram
 
-![Sequence Diagram](images/sequence_diagram.png)
+## 5. Dataflow Diagram
+
+- [Sequence diagram](#sequence-diagram)
+- ![Sequence Diagram](images/sequence_diagram.png)
+
 
 ### Phase 1: PM2.5 Data Collection (continuous, every 5 seconds)
 
@@ -125,7 +138,7 @@ Streamlit dashboard
 
 ---
 
-## Hardware
+## 6. Tools and Technologies
 
 | Device | Model | Purpose |
 |--------|-------|---------|
@@ -136,7 +149,7 @@ Streamlit dashboard
 
 ---
 
-## Project structure
+## 7. Project Structure
 
 ```
 ict720-smart-air-quality/
@@ -170,7 +183,7 @@ ict720-smart-air-quality/
 
 ---
 
-## How to run
+## 8. Implementation
 
 ```bash
 # 1. Clone the repo
@@ -193,3 +206,63 @@ docker-compose up -d
 # 6. Access the dashboard
 # Open browser → http://localhost:8501
 ```
+
+---
+
+## 9. Required Keys
+
+To deploy this ecosystem, you must configure a `.env` file in the root directory with the following credentials:
+
+| Key | Source | Purpose |
+| :--- | :--- | :--- |
+| `FIREBASE_API_KEY` | Firebase Console | Authentication for ESP32 and Python Client |
+| `DATABASE_URL` | Firebase Realtime DB | The REST endpoint for data storage |
+| `GEMINI_API_KEY` | Google AI Studio | Powers the Vision and Voice AI analysis |
+| `TELEGRAM_BOT_TOKEN` | @BotFather | Enables the Alert Bot to send messages |
+| `CHAT_ID` | Telegram | The specific group/user ID for emergency alerts |
+
+---
+
+## 10. Demo
+
+### 🚀 Quick Start for Evaluation:
+1.  **Live Stream:** Open the [Firebase Console](https://console.firebase.google.com/) to see the JSON tree updating in real-time as the ESP32-S2 sends packets.
+2.  **Threshold Test:** * Expose the sensor to a high-concentration source (or manually update the Firebase value to `> 50`).
+    * Observe the **Telegram Bot** instantly pushing a notification with the current PM2.5 value and a timestamp.
+3.  **Analytics:** Run the Streamlit dashboard to view the **39+ historical rows** currently stored in the logs, visualized as a trend line.
+
+---
+
+## 11. Future Work
+
+* **Predictive AI:** Implementing a Long Short-Term Memory (LSTM) model to predict air quality spikes 30 minutes in advance.
+* **Localized Feedback:** Using the ESP32-S3's built-in LCD to show QR codes that link directly to health advice based on current PM2.5 levels.
+* **Advanced Networking:** Transitioning from the Firebase REST API to **MQTT over WebSockets** to reduce battery consumption on the hardware side.
+
+---
+
+## 12. Role and Tasks
+
+Our team divided the project into **4 Functional Pillars** to ensure parallel development during the 48-hour sprint:
+
+### 🛠️ Part 1: Sensory & Edge (Member 1 & 2)
+* Hardware wiring and sensor calibration.
+* Firmware development for ESP32-S2/S3.
+* NTP time synchronization and WiFi stability management.
+
+### ☁️ Part 2: Cloud Infrastructure (Member 3)
+* Firebase Realtime Database schema design.
+* Backend API development using FastAPI.
+* Data validation and "Server-side" timestamping.
+
+### 🤖 Part 3: Intelligence Layer (Member 4)
+* Integration of Google Gemini Vision API.
+* Prompt engineering for "Health Advice" generation.
+* Voice-to-Text and Text-to-Voice processing logic.
+
+### 📊 Part 4: User Experience (Member 5)
+* Streamlit Dashboard UI/UX design.
+* Telegram Bot event-handling (polling/webhooks).
+* Historical data visualization and reporting.
+
+
