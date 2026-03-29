@@ -10,7 +10,7 @@
 | Jesdakorn Jaraschotesathien | IoT Hardware Engineer |
 | Nhat Anh Tran | Voice AI Engineer |
 | Thinn Thinn Htet | Backend Developer |
-| Khin Su Su Han | Integration Developer |
+| Khin Su Su Han | Telegram Bot Developer |
 | Napat Charoenwong | Frontend Developer |
 
 ---
