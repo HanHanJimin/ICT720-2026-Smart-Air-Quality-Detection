@@ -28,7 +28,7 @@
 
 - **Jesdakorn Jaraschotesathien**: Hardware Engineer — Program the ESP32-S2 to read PM2.5, PM10, humidity and temperater. Then, send those parameters to online database
 - **Nhat Anh Tran**: Voice AI Engineer — Program the LilyGO T-SimCam ESP32-S3 to subscribe to MQTT alerts.
-- **Thinn Htet Htet**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers the LilyGO T-SimCam ESP32-S3 alerts, and exposes REST API endpoints for other services.
+- **Thinn Thinn Htet**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers the LilyGO T-SimCam ESP32-S3 alerts, and exposes REST API endpoints for other services.
 - **Khin Su Su Han**: Frontend / Bot Developer — Build the Telegram Bot to send air quality alerts.
 - **Napat Charoenwong**: Frontend Developer — Build the Streamlit web dashboard for real-time monitoring and historical data visualization.
 
