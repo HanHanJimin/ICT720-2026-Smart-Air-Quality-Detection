@@ -60,7 +60,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 3. System Architecture
 
-![Software Stack](images/software_stack.png)
+![Software Stack](images/system_architecture.png)
 
 ---
 
