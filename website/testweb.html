@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sensor Data Graph</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h2>Environment Monitor</h2>
+    
+    <div style="width: 800px; max-width: 100%;">
+        <canvas id="myTimeGraph"></canvas>
+    </div>
+
+    <script>
+        // Your raw JSON data
+        const rawData = {
+          "-OoqvCBsMfl84txZ6wDi": {"humidity":67.37,"pm10":41,"pm2_5":39,"temp":39.03,"time":"2026-03-29T07:09:42"},
+          "-OoqveYUgD6VIefpHxE_": {"humidity":60.73,"pm10":38,"pm2_5":40,"temp":35.07,"time":"2026-03-29T07:11:43"}
+        };
+
+        // Convert the object into an array
+        const dataArray = Object.values(rawData);
+
+        // Extract data for the X and Y axes
+        const timeLabels = dataArray.map(item => {
+            const date = new Date(item.time);
+            return date.toLocaleTimeString(); // Formats it to standard time
+        });
+        
+        const temperatures = dataArray.map(item => item.temp);
+        const humidities = dataArray.map(item => item.humidity);
+
+        // Target the canvas element
+        const ctx = document.getElementById('myTimeGraph').getContext('2d');
+
+        // Draw the Chart
+        new Chart(ctx, {
+            type: 'line', // We want a line graph for time series
+            data: {
+                labels: timeLabels, // The X-axis labels
+                datasets: [
+                    {
+                        label: 'Temperature',
+                        data: temperatures, // The Y-axis data for temp
+                        borderColor: 'rgb(255, 99, 132)', // Red line
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.1 // Slight curve to the line
+                    },
+                    {
+                        label: 'Humidity',
+                        data: humidities, // The Y-axis data for humidity
+                        borderColor: 'rgb(54, 162, 235)', // Blue line
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false // Automatically scales based on your numbers
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
