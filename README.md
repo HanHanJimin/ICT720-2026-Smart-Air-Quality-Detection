@@ -45,6 +45,7 @@ An IoT-based smart air quality monitoring system that:
 - Alerts users via Telegram with the photo, PM2.5 reading, and identified cause
 - Stores all readings and alerts in MongoDB for historical analysis
 - Displays real-time data and trends on a Streamlit web dashboard
+- The AI chatbot actively tracks sensor data across multiple environments (e.g., Room 1 and Room 2) and proactively prompts the user for clarification if a voice query is ambiguous, ensuring accurate data retrieval.
 
 ---
 
