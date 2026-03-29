@@ -32,11 +32,11 @@
 ---
 ## 1. Scope and Objectives
 An IoT-based smart air quality monitoring system that:
-* Continuously monitors PM2.5/PM10 levels using **ESP32-S2** "Cucumber" nodes.
-* Synchronizes data to a central **Firebase Realtime Database** for multi-device management.
-* Detects unhealthy spikes (> 50 µg/m³) and triggers **ESP32-S3** visual/voice alerts.
-* Uses **Google Gemini AI** to identify pollution sources from camera feeds.
-* Provides a dual-interface: **Telegram Bot** (Alerts) and **Streamlit Dashboard** (History).
+* **Real-time Monitoring:** Uses ESP32-S2 to continuously push PM2.5, PM10, Humidity, and Temperature to Firebase.
+* **Interactive AI Voice Assistant:** Uses an **ESP32-S3 (LilyGO T-SimCam)** to listen to user voice commands (e.g., "How is the air today?").
+* **Multi-Modal Feedback:** Responds to user queries by fetching live cloud data and displaying it on the **ESP32-S3 built-in screen** while simultaneously answering via **Voice/Speaker**.
+* **Visual Intelligence:** Triggers the S3 camera to identify pollution sources using **Google Gemini Vision** when thresholds are exceeded.
+* **Dual-Interface Alerts:** Sends detailed health advice and photos to a **Telegram Bot** and logs trends on a **Streamlit Dashboard**.
 
 ---
 
