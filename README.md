@@ -1,8 +1,7 @@
 # ICT720-2026-Smart-Air-Quality-Detection
-IoT air quality monitor with AI pollution source detection using ESP32-S2, and Gemini LLM API for ICT720
+<p>This project designed to help people monitor PM2.5 levels more meaningfully in their own indoor environment. For people who do not own a PM2.5 filter or purifier, it is often difficult to access PM2.5 information directly in their room or workspace. Even for those who already have a PM2.5 filter, most devices only show the current value, without providing any history, trends, or deeper insight. In addition, official air-quality websites usually provide data based on general monitoring stations, so the PM2.5 values may not accurately reflect the actual conditions at your specific location.</p>
 
 
-Repo for demo idea, model, and code for ICT720 course of 2026
 
 ## User stories
 ## Software models
@@ -20,7 +19,7 @@ Repo for demo idea, model, and code for ICT720 course of 2026
 
 #### Members
 
-- **Jesdakorn**: Hardware & Sensor Engineer — Set up and program the ESP32-S2 to read PM2.5 data from the Honeywell sensor via UART, connect to WiFi, and publish air quality readings to the MQTT broker every 5 seconds.
+- **Jesdakorn Jaraschotesathien**: Hardware Engineer — Program the ESP32-S2 to read PM2.5, PM10, humidity and temperater. Then, send those parameters to online database
 - **Nhat Anh Tran**: Voice AI Engineer — Program the LilyGO T-SimCam ESP32-S3 to subscribe to MQTT alerts.
 - **Thinn Htet Htet**: Backend Developer — Build the central Python/FastAPI server in Docker that receives MQTT data, stores readings in MongoDB, checks PM2.5 thresholds, triggers the LilyGO T-SimCam ESP32-S3 alerts, and exposes REST API endpoints for other services.
 - **Khin Su Su Han**: Frontend / Bot Developer — Build the Telegram Bot to send air quality alerts.
