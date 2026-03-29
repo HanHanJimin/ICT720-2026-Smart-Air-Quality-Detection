@@ -128,7 +128,7 @@ def format_time(t):
 
 
 # ═══════════════════════════════════════
-# ✅ SMART STATIC SUGGESTION (PM2.5 + Temp)
+# SMART STATIC SUGGESTION (PM2.5 + Temp)
 # ═══════════════════════════════════════
 
 def get_temp_note(temp):
@@ -175,7 +175,7 @@ def get_suggestion_static(pm25, temp):
 
 
 # ═══════════════════════════════════════
-# ✅ STATIC CAUSES (based on PM2.5 + time)
+#  STATIC CAUSES (based on PM2.5 + time)
 # ═══════════════════════════════════════
 
 def get_causes_static(pm25):
@@ -296,7 +296,7 @@ def format_room_message(room, data, chat_id):
     emoji = get_emoji(pm25)
     threshold = get_threshold(chat_id)
 
-    # ✅ Smart suggestion with PM2.5 + temperature
+    #  Smart suggestion with PM2.5 + temperature
     suggestion = get_suggestion_static(pm25, temp)
 
     if pm25 > threshold:
@@ -475,7 +475,7 @@ def handle_text(message):
 
 
 # ═══════════════════════════════════════
-# ✅ AUTO ALERT — per room, threshold = 20
+#  AUTO ALERT — per room, threshold = 20
 # ═══════════════════════════════════════
 
 def auto_alert_loop():
@@ -486,7 +486,7 @@ def auto_alert_loop():
     while True:
         try:
             now = time.time()
-            alert_rooms = []  # ✅ collect rooms that exceed threshold this cycle
+            alert_rooms = []  #  collect rooms that exceed threshold this cycle
 
             for room in ["room1", "room2"]:
                 # Cooldown: don't re-alert same room within 3 min
@@ -499,7 +499,7 @@ def auto_alert_loop():
                 if pm25 > ALERT_THRESHOLD:
                     alert_rooms.append((room, entry))
 
-            # ✅ Send alert only for rooms that exceeded threshold
+            #  Send alert only for rooms that exceeded threshold
             if alert_rooms:
                 for chat_id in list(subscribed_users.keys()):
                     for room, entry in alert_rooms:
@@ -511,7 +511,7 @@ def auto_alert_loop():
                         room_label = "Room 1" if room == "room1" else "Room 2"
                         room_icon = "\U0001F3E0" if room == "room1" else "\U0001F3E2"
 
-                        # ✅ Static tip using PM2.5 + temp
+                        #  Static tip using PM2.5 + temp
                         alert_tip = get_suggestion_static(pm25, temp)
 
                         try:
