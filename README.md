@@ -216,7 +216,7 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 ### 🚀 Telegram Bot
 
 ### 🚀 Dashboard
-
+![Alternative Text](images/dashboard.png)
 ---
 
 ## 11. Future Work
@@ -235,5 +235,5 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 | **Nhat Anh Tran** | Voice AI Engineer | Program LilyGO T-SimCam ESP32-S3 to handle voice interactions, fetch historical data from **Firebase**, and display real-time alerts. |
 | **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, and expose REST API endpoints for AI services. |
 | **Khin Su Su Han** | Bot Developer | Develop the Telegram Bot to push real-time air quality alerts and AI-generated health advice to users. |
-| **Napat Charoenwong** | Frontend Developer | Build the Streamlit web dashboard to query **Firebase** for real-time monitoring and historical trend visualization. |
+| **Napat Charoenwong** | Frontend Developer | Build a web-based dashboard using HTML/JavaScript to query Firebase for real-time monitoring and historical trend visualization.|
 
