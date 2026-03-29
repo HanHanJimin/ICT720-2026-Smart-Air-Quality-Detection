@@ -211,9 +211,11 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 ## 10. Demo
 
 ### 🚀 Voice Bot
-<video src="https://github.com/HanHanJimin/ICT720-2026-Smart-Air-Quality-Detection/raw/main/images/voicebot_demo_p1.mp4" width="100%" controls></video>
+https://github.com/user-attachments/assets/623d5235-de0b-4ad2-9564-00cd51d684a3
 
 ### 🚀 Telegram Bot
+
+
 
 ### 🚀 Dashboard
 ![Alternative Text](images/dashboard.png)
