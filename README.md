@@ -31,35 +31,30 @@
 
 ---
 ## 1. Scope and Objectives
-An IoT-based smart air quality monitoring system that:
-* **Real-time Monitoring:** Uses ESP32-S2 to continuously push PM2.5, PM10, Humidity, and Temperature to Firebase.
-* **Interactive AI Voice Assistant:** Uses an **ESP32-S3 (LilyGO T-SimCam)** to listen to user voice commands (e.g., "How is the air today?").
-* **Multi-Modal Feedback:** Responds to user queries by fetching live cloud data and displaying it on the **ESP32-S3 built-in screen** while simultaneously answering via **Voice/Speaker**.
-* **Visual Intelligence:** Triggers the S3 camera to identify pollution sources using **Google Gemini Vision** when thresholds are exceeded.
-* **Dual-Interface Alerts:** Sends detailed health advice and photos to a **Telegram Bot** and logs trends on a **Streamlit Dashboard**.
+
+An interactive AIoT-based smart air quality ecosystem that features:
+
+* **Continuous Monitoring:** Uses an **ESP32-S2** "Cucumber" node with a Honeywell sensor to push real-time PM2.5, PM10, Humidity, and Temperature data to **Firebase**.
+* **Interactive AI Voice Assistant:** Uses an **ESP32-S3 (LilyGO T-SimCam)** as a voice-command hub. It captures user audio to query live status or historical trends.
+* **Multi-Modal Feedback:** The system responds to user queries by fetching cloud data and presenting it simultaneously through **Spoken Voice** (via S3 speaker) and **Visual Data** (via the S3 built-in LCD).
+* **Threshold Intelligence:** Monitors air quality against a safe limit (50 µg/m³). When breached, it triggers the S3 camera to capture a photo of the environment.
+* **AI Vision Analysis:** Sends captured photos to the **Google Gemini Vision API** to identify potential pollution sources (e.g., smoke, construction dust).
+* **Multi-Channel Alerts:** Delivers real-time notifications to a **Telegram Bot** (including photos and AI analysis) and maintains a historical dashboard via **Streamlit**.
 
 ---
 
 ## 2. User Stories
-<p>1. As a room owner, I want to monitor PM2.5 levels in my room remotely through a dashboard, so that I can check air quality even when I am not physically there</p>
-
-<p>2. As a room owner, I want to see historical PM2.5 data , so that I can evaluate whether the room environment is improving or getting worse over time.</p>
-
-<p>3. As a room owner, I want to set safe threshold values for PM2.5, so that the system can notify users when the air quality becomes unhealthy.</p>
-
-<p>4. As a room owner, I want to identify time periods when pollution is highest, so that I can improve ventilation or change room usage habits.</p>
-
-![User Stories](images/user_stories.png)
 
 | As a | I want to | so that |
-|------|-----------|---------|
-| resident | receive a Telegram alert when PM2.5 exceeds safe levels | I can close windows or wear a mask to protect my health |
-| resident | see a photo of what is causing the pollution | I know whether it's smoke, traffic, or construction and can respond |
-| resident | set my own PM2.5 alert threshold | I can customize sensitivity based on my health condition |
-| building manager | view real-time PM2.5 levels on a web dashboard | I can Announce that residents should wear masks or provide health care advice to residents. |
-| building manager | view historical PM2.5 data with charts |  I can prepare the monthly air quality report for the juristic committee and find solutions. |
-| researcher | query collected PM2.5 and image data via REST API | I can run statistical analysis and build predictive models for pollution forecasting. |
-| researcher | review AI classification accuracy on the dashboard | the AI model can be improved over time |
+| :--- | :--- | :--- |
+| **Resident** | Ask the ESP32-S3 voice assistant for current air data | I can know the PM2.5 and humidity levels instantly without checking my phone. |
+| **Resident** | Ask the voice assistant about historical air quality | I can understand if the air has been improving or worsening throughout the day. |
+| **Resident** | Receive a Telegram alert with a photo of the pollution source | I can identify exactly what is causing the bad air and take immediate action. |
+| **Building Manager** | View historical PM2.5/PM10 charts on a web dashboard | I can generate monthly air quality reports for the juristic committee. |
+| **Building Manager** | Set custom alert thresholds via the system | I can adjust sensitivity based on the health needs of specific residents. |
+| **Researcher** | Access the collected environmental data via REST API | I can run statistical models to forecast future pollution trends. |
+
+![User Stories](images/user_stories.png)
 
 ---
 
