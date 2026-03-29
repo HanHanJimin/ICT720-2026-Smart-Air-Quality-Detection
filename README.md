@@ -38,9 +38,8 @@ An interactive AIoT-based smart air quality ecosystem that features:
 * **Interactive AI Voice Assistant:** Uses an **ESP32-S3 (LilyGO T-SimCam)** as a voice-command hub. It captures user audio to query live status or historical trends.
 * **Multi-Modal Feedback:** The system responds to user queries by fetching cloud data and presenting it simultaneously through **Spoken Voice** (via S3 speaker) and **Visual Data** (via the S3 built-in LCD).
 * **Threshold Intelligence:** Monitors air quality against a safe limit (50 µg/m³). When breached, it triggers the S3 camera to capture a photo of the environment.
-* **AI Vision Analysis:** Sends captured photos to the **Google Gemini Vision API** to identify potential pollution sources (e.g., smoke, construction dust).
-* **Multi-Channel Alerts:** Delivers real-time notifications to a **Telegram Bot** (including photos and AI analysis) and maintains a historical dashboard via **Streamlit**.
-* **Context-Aware Multi-Room Management:** The AI chatbot actively tracks sensor data across multiple environments (e.g., Room 1 and Room 2) and proactively prompts the user for clarification if a voice query is ambiguous, ensuring accurate data retrieval.
+* **Multi-Channel Alerts:** Delivers real-time notifications to a **Telegram Bot** and maintains a historical dashboard via **the webpage**.
+* **Context-Aware Multi-Room Management:** The AI chatbot actively tracks sensor data across different environments (e.g., Room 1 and Room 2) and proactively prompts the user for clarification if a voice query is ambiguous, ensuring accurate data retrieval.
 
 ---
 
