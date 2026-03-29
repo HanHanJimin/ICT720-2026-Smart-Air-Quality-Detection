@@ -40,7 +40,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 * **Threshold Intelligence:** Monitors air quality against a safe limit (50 µg/m³). When breached, it triggers the S3 camera to capture a photo of the environment.
 * **AI Vision Analysis:** Sends captured photos to the **Google Gemini Vision API** to identify potential pollution sources (e.g., smoke, construction dust).
 * **Multi-Channel Alerts:** Delivers real-time notifications to a **Telegram Bot** (including photos and AI analysis) and maintains a historical dashboard via **Streamlit**.
-*** Context-Aware Multi-Room Management: ** The AI chatbot actively tracks sensor data across multiple environments (e.g., Room 1 and Room 2) and proactively prompts the user for clarification if a voice query is ambiguous, ensuring accurate data retrieval.
+* **Context-Aware Multi-Room Management:** The AI chatbot actively tracks sensor data across multiple environments (e.g., Room 1 and Room 2) and proactively prompts the user for clarification if a voice query is ambiguous, ensuring accurate data retrieval.
 
 ---
 
