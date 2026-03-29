@@ -232,7 +232,7 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 | Name | Role | Primary Tasks |
 | :--- | :--- | :--- |
 | **Jesdakorn Jaraschotesathien** | Hardware Engineer | Program ESP32-S2/ESP8266 to read PM2.5, PM10, humidity, and temperature; synchronize 4-parameter payloads to **Firebase Realtime Database**. |
-| **Nhat Anh Tran** | Voice AI Engineer | Program LilyGO T-SimCam ESP32-S3 to handle voice interactions, fetch historical data from **Firebase**, and display real-time alerts. |
+| **Nhat Anh Tran** | Architecture and programming the interactive AI agent combining Google Gemini, gTTS, and Python. Develop the ESP32-S3 firmware (C++) for real-time dynamic UI updates and physical button interrupts. Implement context-aware logic to manage multi-room sensor data from Firebase and design a fault-tolerant audio fallback system. |
 | **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, and expose REST API endpoints for AI services. |
 | **Khin Su Su Han** | Bot Developer | Develop the Telegram Bot to push real-time air quality alerts and AI-generated health advice to users. |
 | **Napat Charoenwong** | Frontend Developer | Build a web-based dashboard using HTML/JavaScript to query Firebase for real-time monitoring and historical trend visualization.|
