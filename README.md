@@ -233,7 +233,7 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 | :--- | :--- | :--- |
 | **Jesdakorn Jaraschotesathien** | Hardware Engineer | Program ESP32-S2/ESP8266 to read PM2.5, PM10, humidity, and temperature; synchronize 4-parameter payloads to **Firebase Realtime Database**. |
 | **Nhat Anh Tran** | Voice AI Engineer| Architecture and programming the interactive AI agent combining Google Gemini, gTTS, and Python. Develop the ESP32-S3 firmware (C++) for real-time dynamic UI updates and physical button interrupts. Implement context-aware logic to manage multi-room sensor data from Firebase and design a fault-tolerant audio fallback system. |
-| **Thinn Thinn Htet** | Backend Developer | Build the central Python/FastAPI server in Docker; manage **Firebase** data logic, and expose REST API endpoints for AI services. |
+| **Thinn Thinn Htet** | Backend Developer | Design the real-time Firebase infrastructure and ESP32 connectivity logic. Structure time-series data and utilize Firebase REST APIs to support the voice-based AI agent, Telegram bot, and web dashboard. |
 | **Khin Su Su Han** | Telegram Bot Developer | Developed the Telegram bot for live and historical air-quality monitoring across Room 1 and Room 2. Built interactive bot menus for room status, AQI guide, history checking, and estimated pollution-cause display. Implemented automatic PM2.5 alert notifications with health advice when PM2.5 exceeds the configured threshold. Integrated **Google Gemini** for the **Ask AI** feature to answer air-quality-related questions based on sensor data. |
 | **Napat Charoenwong** | Frontend Developer | Build a web-based dashboard using HTML/JavaScript to query Firebase for real-time monitoring and historical trend visualization.|
 
