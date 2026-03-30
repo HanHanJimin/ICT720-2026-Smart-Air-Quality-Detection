@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.room-cards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.room-cards button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn-all { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.btn-room1 { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
+.btn-room2 { background: linear-gradient(135deg, #4dabf7, #228be6); }
+
+.room-cards button:hover {
+    filter: brightness(0.8);
+    transform: scale(1.05);
+}
+
+.room-cards button.active {
+    outline: 3px solid white;
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.temp { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
+.humidity { background: linear-gradient(135deg, #4dabf7, #228be6); }
+.pm25 { background: linear-gradient(135deg, #ffd43b, #fab005); color: black; }
+.pm10 { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+
+.card p {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+.chart-box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🌍 Environment Dashboard</h1>
+    <div class="status" id="lastUpdate">Loading...</div>
+</div>
+
+<div class="room-cards">
+    <button class="btn-all active" onclick="setMode('all', this)">🌐 All</button>
+    <button class="btn-room1" onclick="setMode('room1', this)">🏠 Room 1</button>
+    <button class="btn-room2" onclick="setMode('room2', this)">🏠 Room 2</button>
+</div>
+
+<!-- ===== ALL MODE ===== -->
+<div id="allSection">
+    <h2>📌 Latest Records from Room 1</h2>
+    <div class="cards">
+        <div class="card temp">
+            <h3>🌡 Temperature</h3>
+            <p id="temp1">--</p>
+        </div>
+        <div class="card humidity">
+            <h3>💧 Humidity</h3>
+            <p id="humidity1">--</p>
+        </div>
+        <div class="card pm25">
+            <h3>🌫 PM2.5</h3>
+            <p id="pm251">--</p>
+        </div>
+        <div class="card pm10">
+            <h3>🌪 PM10</h3>
+            <p id="pm101">--</p>
+        </div>
+    </div>
+
+    <h2>📌 Latest Records from Room 2</h2>
+    <div class="cards">
+        <div class="card temp">
+            <h3>🌡 Temperature</h3>
+            <p id="temp2">--</p>
+        </div>
+        <div class="card humidity">
+            <h3>💧 Humidity</h3>
+            <p id="humidity2">--</p>
+        </div>
+        <div class="card pm25">
+            <h3>🌫 PM2.5</h3>
+            <p id="pm252">--</p>
+        </div>
+        <div class="card pm10">
+            <h3>🌪 PM10</h3>
+            <p id="pm102">--</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SINGLE ROOM MODE ===== -->
+<div id="singleSection" style="display:none;">
+    <h2 id="sectionTitle">📌 The Latest Records</h2>
+
+    <div class="cards">
+        <div class="card temp"><h3>🌡 Temp</h3><p id="temp">--</p></div>
+        <div class="card humidity"><h3>💧 Humidity</h3><p id="humidity">--</p></div>
+        <div class="card pm25"><h3>🌫 PM2.5</h3><p id="pm25">--</p></div>
+        <div class="card pm10"><h3>🌪 PM10</h3><p id="pm10">--</p></div>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="chartMain"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="chartPM"></canvas>
+    </div>
+</div>
+
+<div class="footer">
+    Real-time Sensor Dashboard • Updated every 20 seconds
+</div>
+
+<script>
+const url1 = "https://besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app/room1/logs.json";
+const url2 = "https://besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app/room2/logs.json";
+
+let chartMain, chartPM;
+let currentMode = "all";
+
+function setMode(mode, btn) {
+    currentMode = mode;
+
+    document.querySelectorAll('.room-cards button')
+        .forEach(b => b.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    loadData();
+}
+
+function loadData() {
+    Promise.all([
+        fetch(url1).then(res => res.json()),
+        fetch(url2).then(res => res.json())
+    ])
+    .then(([data1, data2]) => {
+
+        let arr1 = Object.values(data1 || {});
+        let arr2 = Object.values(data2 || {});
+
+        arr1.sort((a,b)=> new Date(a.time)-new Date(b.time));
+        arr2.sort((a,b)=> new Date(a.time)-new Date(b.time));
+
+        const latest1 = arr1[arr1.length-1];
+        const latest2 = arr2[arr2.length-1];
+
+        document.getElementById("lastUpdate").innerText =
+            new Date().toLocaleString();
+
+        // ===== ALL MODE =====
+        if (currentMode === "all") {
+            document.getElementById("allSection").style.display = "block";
+            document.getElementById("singleSection").style.display = "none";
+
+            if (latest1) {
+                temp1.innerText = latest1.temp + " °C";
+                humidity1.innerText = latest1.humidity + " %";
+                pm251.innerText = latest1.pm2_5;
+                pm101.innerText = latest1.pm10;
+            }
+
+            if (latest2) {
+                temp2.innerText = latest2.temp + " °C";
+                humidity2.innerText = latest2.humidity + " %";
+                pm252.innerText = latest2.pm2_5;
+                pm102.innerText = latest2.pm10;
+            }
+
+            return;
+        }
+
+        // ===== SINGLE MODE =====
+        document.getElementById("allSection").style.display = "none";
+        document.getElementById("singleSection").style.display = "block";
+
+        let dataArray = currentMode === "room1" ? arr1 : arr2;
+
+        const latest = dataArray[dataArray.length - 1];
+
+        temp.innerText = latest.temp + " °C";
+        humidity.innerText = latest.humidity + " %";
+        pm25.innerText = latest.pm2_5;
+        pm10.innerText = latest.pm10;
+
+        const labels = dataArray.map(d => new Date(d.time).toLocaleTimeString());
+        const temps = dataArray.map(d => d.temp);
+        const hums = dataArray.map(d => d.humidity);
+        const pm25s = dataArray.map(d => d.pm2_5);
+        const pm10s = dataArray.map(d => d.pm10);
+
+        if (!chartMain) {
+            chartMain = new Chart(chartMain = document.getElementById('chartMain'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Temp', data: temps, borderColor: '#ff6b6b' },
+                        { label: 'Humidity', data: hums, borderColor: '#4dabf7' }
+                    ]
+                },
+                options: { animation: false }
+            });
+        } else {
+            chartMain.data.labels = labels;
+            chartMain.data.datasets[0].data = temps;
+            chartMain.data.datasets[1].data = hums;
+            chartMain.update();
+        }
+
+        if (!chartPM) {
+            chartPM = new Chart(document.getElementById('chartPM'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'PM2.5', data: pm25s, borderColor: '#ffd43b' },
+                        { label: 'PM10', data: pm10s, borderColor: '#69db7c' }
+                    ]
+                },
+                options: { animation: false }
+            });
+        } else {
+            chartPM.data.labels = labels;
+            chartPM.data.datasets[0].data = pm25s;
+            chartPM.data.datasets[1].data = pm10s;
+            chartPM.update();
+        }
+
+    })
+    .catch(err => console.error(err));
+}
+
+loadData();
+setInterval(loadData, 20000);
+</script>
+
+</body>
+</html>
