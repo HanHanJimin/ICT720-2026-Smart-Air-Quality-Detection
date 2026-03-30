@@ -19,9 +19,9 @@
 1. [Scope and Objectives](#1-scope-and-objectives)
 2. [User Stories](#2-user-stories)
 3. [System Architecture](#3-system-architecture)
-4. [Software Stack](#4-software-stack)
-5. [Dataflow Diagram](#5-dataflow-diagram)
-6. [Tools and Technologies](#6-tools-and-technologies)
+4. [Hardware Implementation](#6-hardware-implementation)
+5. [Software Stack](#5-software-stack)
+6. [Dataflow Diagram](#6-dataflow-diagram)
 7. [Required Keys](#7-required-keys)
 8. [Demo](#8-demo)
 9. [Future Work](#9-future-work)
@@ -43,8 +43,6 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 2. User Stories
 
-### 2. User Stories
-
 | As a | I want to | So that |
 | :--- | :--- | :--- |
 | **Resident** | Ask the ESP32-S3 voice assistant for current air data | I can know PM2.5 and humidity instantly without checking my phone |
@@ -61,7 +59,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ---
 
-## 4. Tools and Technologies
+## 4. Hardware Implementation
 
 | Type | Model | Purpose |
 |--------|-------|---------|
@@ -73,6 +71,8 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | Sensor | DHT22 | Measures humidity and temperature |
 | Sensor | HTS221 | Measures humidity and temperature |
 | Breadboard | Standard full-size solderless | Prototyping connections |
+
+### Device Setup
 <p>room1 device</p>
 <img src="images/room1.jpg" width="50%">
 <p>room2 device</p>
