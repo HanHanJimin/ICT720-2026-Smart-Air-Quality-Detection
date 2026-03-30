@@ -43,16 +43,15 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 2. User Stories
 
-| As a | I want to | so that |
-| :--- | :--- | :--- |
-| **Resident** | Ask the ESP32-S3 voice assistant for current air data | I can know the PM2.5 and humidity levels instantly without checking my phone. |
-| **Resident** | Ask the voice assistant about historical air quality | I can understand if the air has been improving or worsening throughout the day. |
-| **Resident** | Receive a Telegram alert with a photo of the pollution source | I can identify exactly what is causing the bad air and take immediate action. |
-| **Building Manager** | View historical PM2.5/PM10 charts on a web dashboard | I can generate monthly air quality reports for the juristic committee. |
-| **Building Manager** | Set custom alert thresholds via the system | I can adjust sensitivity based on the health needs of specific residents. |
-| **Researcher** | Access the collected environmental data via REST API | I can run statistical models to forecast future pollution trends. |
+### 2. User Stories
 
-![User Stories](images/user_stories.png)
+| As a | I want to | So that |
+| :--- | :--- | :--- |
+| **Resident** | Ask the ESP32-S3 voice assistant for current air data | I can know PM2.5 and humidity instantly without checking my phone |
+| **Resident** | Ask the voice assistant about the general questions for air quality | I can understand if the air has been improving or worsening |
+| **Resident** | Receive a Telegram alert when PM2.5 is high | I can take immediate action to protect my health |
+| **Resident** | Ask the Telegram bot about pollution causes | I can understand what might be causing the bad air |
+| **Resident Owner** | View historical PM2.5/PM10 charts on a web dashboard | I can generate air quality reports |
 
 ---
 
