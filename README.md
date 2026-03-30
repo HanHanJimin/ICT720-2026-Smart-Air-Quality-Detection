@@ -144,31 +144,38 @@ Streamlit dashboard
 ```
 ict720-smart-air-quality/
 ├── README.md
-├── images/                          ← Diagrams for this page
+├── images/
 │   ├── software_stack.png
 │   ├── sequence_diagram.png
 │   └── user_stories.png
-├── docker-compose.yml               ← One command starts all services
-├── mosquitto/
-│   └── config/mosquitto.conf
+│
 ├── firmware/
-│   ├── esp32s2_pm25/                ← Member 1
+│   ├── esp32s2_pm25/                  ← Member 1 (Hardware Engineer)
 │   │   └── esp32s2_pm25.ino
-│   └── esp32s3_camera/              ← Member 2
-│       └── esp32s3_camera.ino
-├── server/                          ← Member 3 + Member 4
-│   ├── Dockerfile
+│   ├── esp8266_pm25/                  ← Member 1 (Hardware Engineer)
+│   │   └── esp8266_pm25.ino
+│   └── esp32s3_voice/                 ← Member 2 (Voice AI Engineer)
+│       └── esp32s3_voice.ino
+│
+├── voice_ai/                          ← Member 2 (Voice AI Engineer)
+│   ├── app.py
 │   ├── main.py
-│   ├── ai_classifier.py
+│   ├── robot_brain.py
+│   ├── requirements.txt
+│    ├──platformio.ini
+│
+├── backend/                           ← Member 3 (Backend Developer)
+│   ├── firebase_config.py
 │   └── requirements.txt
-├── telegram_bot/                    ← Member 5
-│   ├── Dockerfile
-│   ├── bot.py
+│
+├── telegram_bot/                      ← Member 4 (Telegram Bot Developer)
+│   ├── bot_final_firebase.py
 │   └── requirements.txt
-└── dashboard/                       ← Member 5
-    ├── Dockerfile
-    ├── app.py
-    └── requirements.txt
+│
+└── dashboard/                         ← Member 5 (Frontend Developer)
+    ├── index.html
+    ├── style.css
+    └── app.js
 ```
 
 ---
