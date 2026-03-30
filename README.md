@@ -93,43 +93,57 @@ An interactive AIoT-based smart air quality ecosystem that features:
 ![Dataflow Diagram](images/dataflow_diagram_v1.png)
 
 
-### Phase 1: PM2.5 Data Collection (continuous, every 5 seconds)
+### Phase 1: Data Collection (continuous, every 2 minutes)
 
 ```
-Server publishes "air_bad" alert via MQTT
-→ MQTT forwards to ESP32-S3
-→ ESP32-S3 displays current PM2.5 value on screen
-→ ESP32-S3 triggers buzzer / LED warning
-→ Server sends alert message to Telegram bot
+ESP32-S2/ESP8266 reads PM2.5, PM10, temp, humidity
+→ Pushes JSON payload to Firebase via HTTP POST
+→ Firebase stores in room1/logs and room2/logs
+→ Backend structures time-series data
 ```
 
-### Phase 2: Threshold Alert + Local Display (when PM2.5 > 50 µg/m³)
+### Phase 2: Threshold Alert (when PM2.5 > 50 µg/m³)
 
 ```
-Server publishes "air_bad" alert via MQTT
-→ MQTT forwards to ESP32-S3
-→ ESP32-S3 displays current PM2.5 value on screen
-→ ESP32-S3 triggers buzzer / LED warning
-→ Server sends alert message to Telegram bot
-```
-### Phase 3: Multilingual Voice Query (on-demand by user)
-
-```
-User speaks question in any language to ESP32-S3
-→ ESP32-S3 captures audio → sends to server via HTTP POST
-→ Server calls LLM API (e.g. Gemini) with PM2.5 context + user question
-→ LLM generates response in user's language
-→ Server returns text response to ESP32-S3
-→ ESP32-S3 displays answer on screen (and/or speaks via speaker)
+Telegram bot polls Firebase every 2 minutes
+→ Checks PM2.5 against threshold (50 µg/m³ WHO standard)
+→ If exceeded: sends alert to all subscribed Telegram users
+→ Firebase sends MQTT alert to ESP32-S3
+→ ESP32-S3 displays PM2.5 on LCD, triggers buzzer/LED
 ```
 
-### Phase 4: Dashboard Updates
+### Phase 3: Telegram Bot Interaction (on demand)
 
 ```
-Streamlit dashboard
-→ queries REST API
-→ receives PM2.5 history + alert logs
-→ updates charts and displays
+User opens Telegram bot → taps /start
+→ Sees main menu: Room 1, Room 2, AQI Guide, Ask AI
+→ Taps Room 1 → bot fetches room1/logs.json from Firebase
+→ Bot displays PM2.5, PM10, temp, humidity + health suggestion
+→ If PM2.5 > 50: shows "Estimated Causes" button
+→ If Ask AI: sends question + sensor data to Gemini → returns AI answer
+```
+
+### Phase 4: Voice AI Interaction (on demand)
+
+```
+User speaks question to ESP32-S3
+→ ESP32-S3 captures audio → sends to Python server via HTTP POST
+→ Server fetches PM2.5 context from Firebase
+→ Server calls Gemini API with audio + sensor data
+→ Gemini generates response in user's language
+→ Server returns text to ESP32-S3
+→ ESP32-S3 displays answer on LCD + speaks via gTTS
+
+```
+
+### Phase 5: Web Dashboard (continuous)
+
+```
+HTML/JavaScript dashboard queries Firebase REST API
+→ Receives PM2.5, PM10, temp, humidity history
+→ Renders real-time gauge and trend charts
+→ Auto-refreshes to show latest data
+
 ```
 
 ---
