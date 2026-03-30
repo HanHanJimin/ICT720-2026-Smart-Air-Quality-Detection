@@ -270,6 +270,7 @@ When PM2.5 exceeds the safe threshold (50 µg/m³), the bot automatically sends 
 
 ### 🚀 Dashboard
 https://hanhanjimin.github.io/ICT720-2026-Smart-Air-Quality-Detection/
+
 **Main Website of Smart Air Quality Detection**
 <img width="1440" height="545" alt="maindashboard" src="https://github.com/user-attachments/assets/396d548f-0eef-4c34-97e5-74cdffa9bbac" />
 
