@@ -74,8 +74,9 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | Sensor | DHT22 | Measures humidity and temperature |
 | Sensor | HTS221 | Measures humidity and temperature |
 | Breadboard | Standard full-size solderless | Prototyping connections |
-
+<p>room1 device</p>
 <img src="images/room1.jpg" width="50%">
+<p>room2 device</p>
 <img src="images/room2.jpg" width="50%">
 
 ---
