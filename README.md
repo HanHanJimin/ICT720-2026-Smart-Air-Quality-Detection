@@ -49,7 +49,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | **Resident** | Ask the voice assistant about the general questions for air quality | I can understand if the air has been improving or worsening |
 | **Resident** | Receive a Telegram alert when PM2.5 is high | I can take immediate action to protect my health |
 | **Resident** | Ask the Telegram bot about pollution causes | I can understand what might be causing the bad air |
-| **Resident Owner** | View historical PM2.5/PM10 charts on a web dashboard | I can generate air quality reports |
+| **Resident** | View historical PM2.5/PM10 charts on a web dashboard | I can generate air quality reports |
 
 ---
 
