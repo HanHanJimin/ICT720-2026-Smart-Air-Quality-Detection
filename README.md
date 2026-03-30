@@ -22,12 +22,10 @@
 4. [Software Stack](#4-software-stack)
 5. [Dataflow Diagram](#5-dataflow-diagram)
 6. [Tools and Technologies](#6-tools-and-technologies)
-7. [Project Structure](#7-project-structure)
-8. [Implementation](#8-implementation)
-9. [Required Keys](#9-required-keys)
-10. [Demo](#10-demo)
-11. [Future Work](#11-future-work)
-12. [Role and Tasks](#12-role-and-tasks)
+7. [Required Keys](#7-required-keys)
+8. [Demo](#8-demo)
+9. [Future Work](#9-future-work)
+10. [Role and Tasks](#10-role-and-tasks)
 
 ---
 ## 1. Scope and Objectives
@@ -137,76 +135,7 @@ Streamlit dashboard
 
 ---
 
-
-
-## 7. Project Structure
-
-```
-ict720-smart-air-quality/
-├── README.md
-├── images/
-│   ├── software_stack.png
-│   ├── sequence_diagram.png
-│   └── user_stories.png
-│
-├── firmware/
-│   ├── esp32s2_pm25/                  ← Member 1 (Hardware Engineer)
-│   │   └── esp32s2_pm25.ino
-│   ├── esp8266_pm25/                  ← Member 1 (Hardware Engineer)
-│   │   └── esp8266_pm25.ino
-│   └── esp32s3_voice/                 ← Member 2 (Voice AI Engineer)
-│       └── esp32s3_voice.ino
-│
-├── voice_ai/                          ← Member 2 (Voice AI Engineer)
-│   ├── app.py
-│   ├── main.py
-│   ├── robot_brain.py
-│   ├── requirements.txt
-│    ├──platformio.ini
-│
-├── backend/                           ← Member 3 (Backend Developer)
-│   ├── firebase_config.py
-│   └── requirements.txt
-│
-├── telegram_bot/                      ← Member 4 (Telegram Bot Developer)
-│   ├── bot_final_firebase.py
-│   └── requirements.txt
-│
-└── dashboard/                         ← Member 5 (Frontend Developer)
-    ├── index.html
-    ├── style.css
-    └── app.js
-```
-
----
-
-## 8. Implementation
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/ict720-smart-air-quality.git
-cd ict720-smart-air-quality
-
-# 2. Set up environment variables
-cp env.example .env
-# Edit .env with your Gemini API key and Telegram bot token
-
-# 3. Start all server services
-docker-compose up -d
-
-# 4. Flash ESP32-S2 firmware (Member 1)
-# Open Arduino IDE → firmware/esp32s2_pm25/esp32s2_pm25.ino → Upload
-
-# 5. Flash ESP32-S3 firmware (Member 2)
-# Open Arduino IDE → firmware/esp32s3_camera/esp32s3_camera.ino → Upload
-
-# 6. Access the dashboard
-# Open browser → http://localhost:8501
-```
-
----
-
-## 9. Required Keys
+## 7. Required Keys
 
 To deploy this ecosystem, you must configure a `.env` file in the root directory with the following credentials:
 
@@ -220,7 +149,7 @@ To deploy this ecosystem, you must configure a `.env` file in the root directory
 
 ---
 
-## 10. Demo
+## 8. Demo
 
 ### 🚀 Voice Bot
 https://github.com/user-attachments/assets/623d5235-de0b-4ad2-9564-00cd51d684a3
@@ -233,7 +162,7 @@ https://github.com/user-attachments/assets/623d5235-de0b-4ad2-9564-00cd51d684a3
 ![Alternative Text](images/dashboard.png)
 ---
 
-## 11. Future Work
+## 9. Future Work
 
 * **Predictive AI:** Implementing a Long Short-Term Memory (LSTM) model to predict air quality spikes 30 minutes in advance.
 * **Localized Feedback:** Using the ESP32-S3's built-in LCD to show QR codes that link directly to health advice based on current PM2.5 levels.
@@ -241,7 +170,7 @@ https://github.com/user-attachments/assets/623d5235-de0b-4ad2-9564-00cd51d684a3
 
 ---
 
-## 12. Role and Tasks
+## 10. Role and Tasks
 
 | Name | Role | Primary Tasks |
 | :--- | :--- | :--- |
