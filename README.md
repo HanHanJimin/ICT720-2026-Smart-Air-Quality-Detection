@@ -189,11 +189,9 @@ The Telegram bot provides a simple and interactive way to monitor indoor air qua
 
 ### 📱 Access the Bot
 
-Scan the QR code below or search the bot on Telegram:
+ search the bot on Telegram:
 
-<div align="center">
-  <img src="images/12TelegramQR.jpg" width="250"/>
-</div>
+
 
 <p align="center"><b>@HANHANJIMINBOT</b></p>
 
