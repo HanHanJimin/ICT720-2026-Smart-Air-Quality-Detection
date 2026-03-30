@@ -3,7 +3,9 @@
 
 **Our Goal:** Help residents monitor and understand air quality through a natural voice interface, providing real-time spoken health advice powered by AI.
 
-## Team Members
+## Group Name: Bestie
+
+### Members & Roles
 
 | Name | Role |
 |------|------|
