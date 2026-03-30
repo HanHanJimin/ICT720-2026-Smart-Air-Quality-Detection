@@ -270,7 +270,20 @@ When PM2.5 exceeds the safe threshold (50 µg/m³), the bot automatically sends 
 
 ### 🚀 Dashboard
 https://hanhanjimin.github.io/ICT720-2026-Smart-Air-Quality-Detection/
-![Alternative Text](images/dashboard.png)
+**Main Website of Smart Air Quality Detection**
+<img width="1440" height="545" alt="maindashboard" src="https://github.com/user-attachments/assets/396d548f-0eef-4c34-97e5-74cdffa9bbac" />
+
+**Room 1 page of Smart Air Quality Detection**
+<img width="1440" height="292" alt="Room1_p1" src="https://github.com/user-attachments/assets/99e1172a-e846-4c4e-9167-45dbeb15c008" />
+<img width="1439" height="717" alt="Room1_p2" src="https://github.com/user-attachments/assets/f9444971-a8a9-45f3-91d0-183dde1f0eed" />
+<img width="1440" height="724" alt="Room1_p3" src="https://github.com/user-attachments/assets/d8e439e5-0373-4541-8421-23c918aa3f00" />
+
+**Room 2 page of Smart Air Quality Detection**
+<img width="1440" height="310" alt="Room2_p1" src="https://github.com/user-attachments/assets/6be6d233-0158-41ef-84f5-95bf022e9535" />
+<img width="1440" height="716" alt="Room2_p1" src="https://github.com/user-attachments/assets/956aff0d-31b3-483a-b522-e0f84ac97124" />
+<img width="1440" height="712" alt="Room2_p1" src="https://github.com/user-attachments/assets/7d34f26e-0db8-4b51-9878-be5fde840fbc" />
+
+
 ---
 
 ## 9. Future Work
