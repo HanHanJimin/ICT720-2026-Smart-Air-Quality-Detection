@@ -245,7 +245,7 @@ Examples:
 - How can I improve indoor air?
 
 <div align="center">
-  <img src="images/7user_askai1.png" width="30%" />
+  <img src="images/7user_askai11.png" width="30%" />
   <img src="images/8user_askai2.png" width="30%" />
   <img src="images/9user_askai3.png" width="30%" />
 </div>
