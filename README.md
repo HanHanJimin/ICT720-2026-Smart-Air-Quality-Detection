@@ -73,9 +73,10 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | Breadboard | Standard full-size solderless | Prototyping connections |
 
 ### Device Setup
-<p>room1 device</p>
+#### Room1 device
 <img src="images/room1.jpg" width="50%">
-<p>room2 device</p>
+
+#### Room2 device
 <img src="images/room2.jpg" width="50%">
 
 ---
