@@ -68,9 +68,12 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 | Device | Model | Purpose |
 |--------|-------|---------|
-| Microcontroller 1 | ESP32-S2 "Cucumber" | Reads PM2.5 sensor data, publishes via MQTT |
-| Microcontroller 2 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Receives MQTT alert, displays PM2.5 on built-in LCD, accepts voice input, responds via speaker, triggers buzzer/LED |
+| Microcontroller 1 | ESP32-S2 "Cucumber" | Reads sensors data, publishes via HTTP |
+| Microcontroller 2 | ESP8266 | Reads sensors data, publishes via HTTP |
+| Microcontroller 3 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Receives MQTT alert, displays PM2.5 on built-in LCD, accepts voice input, responds via speaker, triggers buzzer/LED |
 | Sensor | Honeywell HPM PM2.5 (P/N: 32326466-001) | Measures PM2.5 and PM10 air particles |
+| Sensor | Plantower pms7003 | Measures PM2.5 and PM10 air particles |
+| Sensor | DHT22 | Measures humidity and temperature |
 | Breadboard | Standard full-size solderless | Prototyping connections |
 
 ---
