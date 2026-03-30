@@ -64,7 +64,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 4. Tools and Technologies
 
-| Device | Model | Purpose |
+| Type | Model | Purpose |
 |--------|-------|---------|
 | Microcontroller 1 | ESP32-S2 "Cucumber" | Reads sensors data, publishes via HTTP |
 | Microcontroller 2 | ESP8266 | Reads sensors data, publishes via HTTP |
@@ -72,8 +72,11 @@ An interactive AIoT-based smart air quality ecosystem that features:
 | Sensor | Honeywell HPM PM2.5 (P/N: 32326466-001) | Measures PM2.5 and PM10 air particles |
 | Sensor | Plantower pms7003 | Measures PM2.5 and PM10 air particles |
 | Sensor | DHT22 | Measures humidity and temperature |
+| Sensor | HTS221 | Measures humidity and temperature |
 | Breadboard | Standard full-size solderless | Prototyping connections |
 
+![room1](images/room1.png)
+![room2](images/room2.png)
 ---
 
 ## 5. Software Stack
