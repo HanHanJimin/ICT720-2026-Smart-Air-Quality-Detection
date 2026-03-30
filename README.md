@@ -35,7 +35,7 @@
 An interactive AIoT-based smart air quality ecosystem that features:
 
 * **Continuous Monitoring:** Uses an **ESP32-S2** "Cucumber" node with a Honeywell sensor to push real-time PM2.5, PM10, Humidity, and Temperature data to **Firebase**.
-* **Interactive AI Voice Assistant:** Uses an **ESP32-S3 (LilyGO T-SimCam)** as a voice-command hub. It captures user audio to query live status or historical trends.
+* **Interactive AI Voice Assistant:** Uses an **ESP32-S3** as a voice-command hub. It captures user audio to query live status or historical trends.
 * **Multi-Modal Feedback:** The system responds to user queries by fetching cloud data and presenting it simultaneously through **Spoken Voice** (via S3 speaker) and **Visual Data** (via the S3 built-in LCD).
 * **Threshold Intelligence:** Monitors air quality against a safe limit (50 µg/m³). When breached, it triggers the alert in the Telegram bot.
 * **Multi-Channel Alerts:** Delivers real-time notifications to a **Telegram Bot** and maintains a historical dashboard via **the webpage**.
