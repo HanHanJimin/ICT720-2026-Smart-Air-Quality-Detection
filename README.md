@@ -19,7 +19,7 @@
 1. [Scope and Objectives](#1-scope-and-objectives)
 2. [User Stories](#2-user-stories)
 3. [System Architecture](#3-system-architecture)
-4. [Hardware Implementation](#6-hardware-implementation)
+4. [Hardware Implementation](#4-hardware-implementation)
 5. [Software Stack](#5-software-stack)
 6. [Dataflow Diagram](#6-dataflow-diagram)
 7. [Required Keys](#7-required-keys)
