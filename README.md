@@ -64,7 +64,18 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ---
 
-## 4. Software Stack
+## 4. Tools and Technologies
+
+| Device | Model | Purpose |
+|--------|-------|---------|
+| Microcontroller 1 | ESP32-S2 "Cucumber" | Reads PM2.5 sensor data, publishes via MQTT |
+| Microcontroller 2 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Receives MQTT alert, displays PM2.5 on built-in LCD, accepts voice input, responds via speaker, triggers buzzer/LED |
+| Sensor | Honeywell HPM PM2.5 (P/N: 32326466-001) | Measures PM2.5 and PM10 air particles |
+| Breadboard | Standard full-size solderless | Prototyping connections |
+
+---
+
+## 5. Software Stack
 
 | # | Stack | Technology | Description |
 |---|-------|------------|-------------|
@@ -76,7 +87,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ---
 
-## 5. Dataflow Diagram
+## 6. Dataflow Diagram
 
 - [Sequence diagram](#sequence-diagram)
 - ![Sequence Diagram](images/sequence_diagram.png)
@@ -123,16 +134,7 @@ Streamlit dashboard
 
 ---
 
-## 6. Tools and Technologies
 
-| Device | Model | Purpose |
-|--------|-------|---------|
-| Microcontroller 1 | ESP32-S2 "Cucumber" | Reads PM2.5 sensor data, publishes via MQTT |
-| Microcontroller 2 | LILYGO T-SIMCAM ESP32-S3 (V1.2) | Receives MQTT alert, displays PM2.5 on built-in LCD, accepts voice input, responds via speaker, triggers buzzer/LED |
-| Sensor | Honeywell HPM PM2.5 (P/N: 32326466-001) | Measures PM2.5 and PM10 air particles |
-| Breadboard | Standard full-size solderless | Prototyping connections |
-
----
 
 ## 7. Project Structure
 
