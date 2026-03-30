@@ -90,7 +90,7 @@ An interactive AIoT-based smart air quality ecosystem that features:
 
 ## 6. Dataflow Diagram
 
-![Dataflow Diagram](images/dataflow_diagramv1.png)
+![Dataflow Diagram](images/dataflow_diagram_v1.png)
 
 
 ### Phase 1: PM2.5 Data Collection (continuous, every 5 seconds)
