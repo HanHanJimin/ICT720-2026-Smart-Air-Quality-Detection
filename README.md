@@ -176,6 +176,96 @@ https://github.com/user-attachments/assets/96140be9-46c8-4613-9d42-e508dd060500
 
 ### 🚀 Telegram Bot
 
+The Telegram bot provides a simple and interactive way to monitor indoor air quality in real time. It connects directly to Firebase and allows users to:
+
+- Check live air quality for multiple rooms
+- View recent historical readings
+- Understand AQI levels through a guide
+- Get estimated pollution causes
+- Ask AI questions based on real sensor data
+- Receive automatic alerts when PM2.5 exceeds safe levels
+
+---
+
+### 🟢 1. Start & Main Menu
+
+Users begin by typing `/start`, which displays the main menu with all available features.
+
+<img src="images/1user_start.png" width="300"/>
+
+---
+
+### 📘 2. AQI Guide
+
+Provides a clear explanation of PM2.5 levels and health impacts based on WHO guidelines.
+
+<img src="images/2user_aqiguide.png" width="300"/>
+
+---
+
+### 🏠 3. Room 1 — Live Monitoring
+
+Displays real-time air quality data including PM2.5, PM10, temperature, and humidity, along with a health suggestion.
+
+<img src="images/3user_room1.png" width="300"/>
+
+---
+
+### 📊 4. Room 1 — Recent History
+
+Shows the last 5 readings with timestamps and highlights when PM2.5 exceeds the safe threshold.
+
+<img src="images/4user_room1reading.png" width="300"/>
+
+---
+
+### 🏢 5. Room 2 — Live Monitoring
+
+Allows users to check air quality in another location with the same detailed metrics and suggestions.
+
+<img src="images/5user_room2.png" width="300"/>
+
+---
+
+### 📊 6. Room 2 — Recent History
+
+Displays historical readings for Room 2 and indicates when pollution levels exceed the threshold.
+
+<img src="images/6user_room2reading.png" width="300"/>
+
+---
+
+### 🤖 7. Ask AI — Smart Assistance
+
+Users can ask natural language questions about air quality. The bot uses live sensor data + AI to generate helpful advice.
+
+Examples:
+- Should I wear a mask today?
+- Can I open the windows?
+- How can I improve indoor air?
+
+<div align="center">
+  <img src="images/7user_askai1.png" width="30%" />
+  <img src="images/8user_askai2.png" width="30%" />
+  <img src="images/9user_askai3.png" width="30%" />
+</div>
+
+<br>
+
+<div align="center">
+  <img src="images/10user_askai4.png" width="30%" />
+  <img src="images/11user_askai5.png" width="30%" />
+</div>
+
+---
+
+### ⚠️ 8. Automatic Alerts
+
+When PM2.5 exceeds the safe threshold (50 µg/m³), the bot automatically sends alerts with health recommendations so users can take immediate action.
+
+---
+
+
 
 
 ### 🚀 Dashboard
