@@ -7,9 +7,9 @@
 #include <Adafruit_Sensor.h>
 
 // WiFi
-const char* WIFI_SSID = "true_home2G_672";
-const char* WIFI_PASSWORD = "bcfbf672";
-const char* FIREBASE_HOST = "besties-591ee-default-rtdb.asia-southeast1.firebasedatabase.app";
+const char* WIFI_SSID = "WIFI_SSID";
+const char* WIFI_PASSWORD = "WIFI_PASSWORD";
+const char* FIREBASE_HOST = "FIREBASE_HOST";
 
 // NTP settings
 const char* NTP_SERVER = "pool.ntp.org";
